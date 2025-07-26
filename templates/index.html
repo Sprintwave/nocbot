@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nocbot.ai – Coming Soon</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      max-width: 220px;
+      margin-bottom: 1.5rem;
+      transition: filter 0.3s ease-in-out;
+    }
+
+    .logo:hover {
+      filter: drop-shadow(0 0 10px #00ffc6);
+    }
+
+    .btn-accent {
+      background-color: #00ffc6;
+      color: #000;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border-radius: 999px;
+    }
+
+    .btn-accent:hover {
+      background-color: #00e6b2;
+      box-shadow: 0 0 15px #00ffc6;
+      transform: scale(1.02);
+    }
+
+    .coming-soon {
+      display: inline-block;
+      background-color: rgba(0, 255, 198, 0.1);
+      border: 1px solid #00ffc6;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: #00ffc6;
+      font-size: 1rem;
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 5px #00ffc6; }
+      50% { box-shadow: 0 0 15px #00ffc6; }
+    }
+
+    #vanta-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- VANTA.NET Animated Background -->
+  <div id="vanta-bg"></div>
+
+  <!-- Main Content -->
+  <div class="hero">
+    <div class="container fade-in-up">
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="nocbot logo" class="logo" />
+
+      <p class="lead text-secondary mb-4">
+        Built by senior NOC engineers. Powered by AI.<br />
+        nocbot.ai lets helpdesk and IT teams manage networks by asking questions - no CLI required.
+      </p>
+
+
+      <div class="coming-soon mb-4">
+        <span class="status-icon">🟢</span> Launching Soon
+      </div>
+
+      <form method="POST" class="row g-2 justify-content-center">
+        <div class="col-md-6">
+          <input type="email" name="email" class="form-control bg-dark text-white border-secondary" placeholder="Enter your email" required />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-accent btn-lg">
+            Notify Me
+          </button>
+        </div>
+      </form>
+
+      {% if email %}
+      <p class="mt-4 text-success">Thanks, {{ email }}! We'll notify you when we launch.</p>
+      {% endif %}
+
+      <footer class="mt-5 text-secondary small">&copy; 2025 nocbot.ai – All rights reserved</footer>
+    </div>
+  </div>
+
+  <!-- Scripts for VANTA.NET -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+  <script>
+    VANTA.NET({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.0,
+      scaleMobile: 1.0,
+      color: 0x00ffc6,
+      backgroundColor: 0x000000,
+      points: 12.0,
+      maxDistance: 20.0,
+      spacing: 18.0
+    });
+  </script>
+</body>
+</html>
